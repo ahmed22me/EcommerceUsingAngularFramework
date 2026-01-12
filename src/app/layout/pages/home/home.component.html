@@ -1,0 +1,50 @@
+<app-home-sloider></app-home-sloider>
+
+<app-category-slider></app-category-slider>
+
+
+
+<div class="container mx-auto my-6">
+
+
+  <div class="p-2 md:w-full mx-auto my-10">
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+      <div class="relative">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+          </div>
+          <input [(ngModel)]="userWord" type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'home.Search Mockups, Logos...' | translate}}" required />
+          <button type="submit"  class="text-white absolute end-2.5 bottom-2.5 bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-400">{{"home.Search" | translate}}</button>
+
+        </div>
+  </div>
+
+
+  <div class="row">
+    @if (productList) {
+      @for (product of productList | searchPip : userWord ; track $index) {
+        <div class="md:w-2/12 p-2 cursor-pointer" >
+          <div class="product p-2">
+
+            <div [routerLink]="['/productdetails', product._id]">
+              <img class="w-full" [src]="product.imageCover" alt="productImage">
+              <span class="text-main font-sm">{{product.category.name | uppercase | translate}}</span>
+              <h3 class="my3 text-sm font-medium">{{product.title.split(' ').splice(0,2).join(' ') | onsale}}</h3>
+              <div class="row justify-between">
+                <span>{{product.price | currency }}</span>
+                <span>{{product.ratingsAverage}} <i class="fa fa-star rating-color"></i></span>
+              </div>
+            </div>
+
+            <button (click)="addProctToCart(product._id)" class="btn-main w-full cursor-pointer"><i class="fa fa-cart-plus"></i></button>
+          </div>
+        </div>
+      }
+    }
+
+  </div>
+
+</div>
+

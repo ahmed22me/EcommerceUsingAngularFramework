@@ -1,0 +1,67 @@
+<div class="w-3/4 mx-auto my-6">
+
+  <h1 class="text-2xl font-bold mt-3">Shipping Address :</h1>
+
+  <form [formGroup]="shippingForm" (ngSubmit)="submitShipping()" >
+
+    @if (errMsg) {
+      <div class="alert-danger">
+        <p class="">{{errMsg}}</p>
+      </div>
+    }
+
+
+    <div class="my-3">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">Details :</label>
+      <input formControlName="details" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (shippingForm.get('details')?.errors && shippingForm.get('details')?.touched) {
+        <div class="alert-danger">
+          @if (shippingForm.get('details')?.errors?.['required']) {
+            <p class="p-1 m-0" > details is required </p>
+          }
+          @if (shippingForm.get('details')?.errors?.['pattern']) {
+            <p class="p-1 m-0"> details not valid </p>
+          }
+
+        </div>
+      }
+
+
+    </div>
+
+    <div class="my-3"  >
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">Phone :</label>
+      <input formControlName="phone" type="tel" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (shippingForm.get('phone')?.errors && shippingForm.get('phone')?.touched) {
+        <div class="alert-danger">
+          @if (shippingForm.get('phone')?.errors?.['required']) {<p class="p-1 m-0">phone is requaird</p>}
+          @if (shippingForm.get('phone')?.errors?.['pattern']) {<p class="p-1 m-0">not type of phone</p>}
+        </div>
+      }
+
+
+    </div>
+
+    <div class="my-3" >
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">City :</label>
+      <input formControlName="city" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (shippingForm.get('city')?.errors && shippingForm.get('city')?.touched) {
+        <div class="alert-danger">
+          @if (shippingForm.get('city')?.errors?.['required']) {<p class="p-1 m-0">city is requaird</p>}
+          @else if (shippingForm.get('city')?.errors?.['pattern']) {<p class="p-1 m-0">enter valid city</p>}
+        </div>
+      }
+    </div>
+
+    <button [disabled]="shippingForm.invalid" type="submit" class="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 block ms-auto ">
+      @if (isLoading) {
+        <span><i class="fa fa-spin fa-spinner"></i></span>
+      }
+      @else {
+        <span>CheckOut</span>
+      }
+    </button>
+
+  </form>
+
+</div>

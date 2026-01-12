@@ -1,0 +1,22 @@
+
+
+  <div class="container mx-auto my-4">
+    <h2 class="my-3 text-xl font-medium">{{'category-slider.Show Popular Categories' | translate}}</h2>
+
+    <owl-carousel-o [options]="customOptions">
+
+      @for (category of categoryList; track $index) {
+
+
+      <ng-template carouselSlide [id]="category._id">
+        <img [src]="category.image" [alt]="category.name" [title]="category.name">
+      </ng-template>
+
+      }
+
+
+    </owl-carousel-o>
+  </div>
+
+
+

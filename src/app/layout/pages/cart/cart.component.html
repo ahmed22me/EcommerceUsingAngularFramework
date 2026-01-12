@@ -1,0 +1,36 @@
+
+
+@if (cartData) {
+  <div class="container mx-auto p-2 my-6 bg-gray-200">
+
+    <h1 class="text-xl font-semibold p-3">Shope Cart</h1>
+    <p class="text-main p-3">Total Price : {{cartData.totalCartPrice}} </p>
+
+    @for (p of cartData.products; track $index) {
+      <div class="row bg-gray-200 border-b border-gray-100 items-center">
+
+        <div class="md:w-1/12 p-3"><img [src]="p.product.imageCover" class="w-full " alt="image-cover"></div>
+        <div class="md:w-10/12 p-3">
+          <h2 class="text-lg font-medium mt-2">{{p.product.title}}</h2>
+          <p class="text-main my-3">price : {{p.price}}</p>
+          <span (click)="deletProducts(p.product._id)" class="cursor-pointer mb-2">Remove <i class="fa fa-trash text-main"></i> </span>
+        </div>
+        <div class="md:w-1/12 p-3">
+          <button (click)="updataProductCartCount(p.product._id,p.count = p.count+1)" class="text-white bg-green-400 rounded p-1" >+</button>
+          <span class="p-2">{{p.count}}</span>
+          <button (click)="updataProductCartCount(p.product._id,p.count = p.count-1)" class="text-white bg-red-400 rounded p-1" >-</button>
+        </div>
+
+
+      </div>
+
+
+    }
+    <button [routerLink]="['/shippingAddress', cartData._id]" type="submit" class="block ms-auto my-5 text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ">
+      <span>Order Now</span>
+    </button>
+
+  </div>
+}
+
+

@@ -1,0 +1,80 @@
+<div class="w-3/4 mx-auto my-6">
+
+  <h1 class="text-2xl font-bold mt-3">Register Now :</h1>
+
+  <form [formGroup]="regform" (ngSubmit)="submitReg()" >
+
+
+
+    <div class="my-3">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">Name :</label>
+      <input formControlName="name" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (regform.get('name')?.errors && regform.get('name')?.touched) {
+        <div class="alert-danger">
+          @if (regform.get('name')?.errors?.['required']) {
+            <p class="p-1 m-0" > name is required </p>
+          }
+          @if (regform.get('name')?.errors?.['minlength']) {
+            <p class="p-1 m-0"> name min length is : 3 </p>
+          }
+          @if (regform.get('name')?.errors?.['maxlength']) {
+            <p class="p-1 m-0"> name max length is : 8 </p>
+          }
+        </div>
+      }
+
+
+    </div>
+    <div class="my-3"  >
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">Email :</label>
+      <input formControlName="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (regform.get('email')?.errors && regform.get('email')?.touched) {
+        <div class="alert-danger">
+          @if (regform.get('email')?.errors?.['required']) {<p class="p-1 m-0">email is requaird</p>}
+          @if (regform.get('email')?.errors?.['email']) {<p class="p-1 m-0">not type of email</p>}
+        </div>
+      }
+
+
+    </div>
+    <div class="my-3" >
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">Password :</label>
+      <input formControlName="password" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (regform.get('password')?.errors && regform.get('password')?.touched) {
+        <div class="alert-danger">
+          @if (regform.get('password')?.errors?.['required']) {<p class="p-1 m-0">password is requaird</p>}
+          @else if (regform.get('password')?.errors?.['pattern']) {<p class="p-1 m-0">enter valid password</p>}
+        </div>
+      }
+    </div>
+    <div class="my-3" >
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">rePassword :</label>
+      <input formControlName="rePassword" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (regform.get('rePassword')?.errors && regform.get('rePassword')?.touched) {
+        <div class="alert-danger">
+          @if (regform.get('rePassword')?.errors?.['required']) {<p class="p-1 m-0">rePassword is requaird</p>}
+          @if (regform.get('rePassword')?.errors?.['mismatch']) {<p class="p-1 m-0">rePassword not match password</p>}
+        </div>
+      }
+    </div>
+    <div class="my-3" >
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="">Phone :</label>
+      <input formControlName="phone" type="tel" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (regform.get('phone')?.errors && regform.get('phone')?.touched) {
+        <div class="alert-danger">
+          @if (regform.get('phone')?.errors?.['required']) {<p class="p-1 m-0">phone is requaird</p>}
+          @if (regform.get('phone')?.errors?.['pattern']) {<p class="p-1 m-0">enter valid phone</p>}
+        </div>
+      }
+    </div>
+
+    <button [disabled]="regform.invalid" type="submit" class="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 block ms-auto ">
+
+
+        <span>Registers</span>
+
+    </button>
+
+  </form>
+
+</div>

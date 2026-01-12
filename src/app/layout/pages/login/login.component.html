@@ -1,0 +1,47 @@
+<div class="w-3/4 mx-auto my-16">
+
+  <h1 class="text-2xl font-bold mt-3">Login Now :</h1>
+
+  <form [formGroup]="loginform" (ngSubmit)="submitlogin()" >
+
+
+
+    <div class="my-3"  >
+      <label for="" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email :</label>
+      <input formControlName="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (loginform.get('email')?.errors && loginform.get('email')?.touched) {
+        <div class="alert-danger">
+          @if (loginform.get('email')?.errors?.['required']) {<p class="p-1 m-0">email is requaird</p>}
+          @if (loginform.get('email')?.errors?.['email']) {<p class="p-1 m-0">not type of email</p>}
+        </div>
+      }
+
+
+    </div>
+    <div class="my-3" >
+      <label for="" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password :</label>
+      <input formControlName="password" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" >
+      @if (loginform.get('password')?.errors && loginform.get('password')?.touched) {
+        <div class="alert-danger">
+          @if (loginform.get('password')?.errors?.['required']) {<p class="p-1 m-0">password is requaird</p>}
+          @else if (loginform.get('password')?.errors?.['pattern']) {<p class="p-1 m-0">enter valid password</p>}
+        </div>
+      }
+    </div>
+
+
+
+    <div class="flex justify-end items-end gap-2">
+
+      <a routerLink="/forgetPassword" class="text-blue-500 underline cursor-pointer">Forget Password</a>
+
+      <button [disabled]="loginform.invalid" type="submit" class="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ">
+
+          <span>Login</span>
+
+      </button>
+    </div>
+
+  </form>
+
+</div>
